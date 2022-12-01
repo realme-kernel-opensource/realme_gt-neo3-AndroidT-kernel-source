@@ -1,0 +1,202 @@
+&odm {
+	oplus_sensor:oplus_sensor {
+		compatible = "oplus,sensor-devinfo";
+		als-row-coe = <1000>;
+		/* sensor start */
+		/*
+		enum {
+			LIS3DH,
+			LSM6DS3,
+			BMI160,
+			LIS2HH12,
+			LSM6DSM,
+			BMI2XY,
+			LSM6DSO,
+			BMA2X2,
+			ICM4X6XX,
+			ICM4N607,
+		};
+		*/
+		gsensor_1: gsensor_1 {
+			status = "okay";
+			sensor_name = <9>;//ICM4N607
+			device_name = "icm4n607";
+			i2c_num = <2>;
+			i2c_addr = <0x68>;
+			direction = <0>;
+			eint_num = <25>;
+			gyro_cali_version= <2>; //should be always v2 for lsm6dso
+			acc_cali_range= <300 300 300>;
+		};
+		sub_gsensor_1: sub_gsensor_1 {
+			status = "okay";
+			sensor_name = <9>;//ICM4N607
+			device_name = "icm4n607";
+			i2c_num = <2>;
+			i2c_addr = <0x69>;
+			direction = <7>;
+			eint_num = <5>;
+			gyro_cali_version= <2>; //should be always v2 for lsm6dso
+			acc_cali_range= <300 300 300>;
+		};
+		/*
+		enum {
+			AKM09911,
+			MMC3530,
+			MMC5603,
+			MXG4300,
+			AKM09918,
+		};
+		*/
+		msensor_1: msensor_1 {
+			status = "okay";
+			sensor_name = <4>;//AKM09918
+			i2c_num = <6>;
+			i2c_addr = <0x0C>;
+			direction = <1>;
+			eint_num = <0>;
+			soft-mag-parameter = <8072 0 587 0 178 0 114 0 11343 0 133 0 139 1 444 1 11222 0>;
+		};
+		/*
+		enum {
+			TMD2725,
+			APSD9922,
+			STK3335,
+			STK3331,
+			STK2232,
+			TCS3701,
+			STK32600,
+			STK33502,
+			MN78911,
+			TCS3720,
+		};
+		*/
+		proximity_1: proximity_1 {
+			status = "okay";
+			sensor_name = <9>;//TCS3720
+			i2c_num = <5>;
+			i2c_addr = <0x39>;
+			direction = <0>;
+			eint_num = <18>;
+			low_step = <300>;
+			high_step = <400>;
+			low_limit = <400>;
+			high_limit = <600>;
+			dirty_low_step = <180>;
+			dirty_high_step = <250>;
+			ps_dirty_limit = <1023>;
+			ps_ir_limit = <500>;
+			ps_adjust_min = <0>;
+			ps_adjust_max = <600>;
+			sampling_count = <5>;
+			step_max = <400>;
+			step_min = <110>;
+			step_div = <1500>;
+			anti_shake_delta = <80>;
+			dynamic_cali_max = <1024>;
+			raw2offset_radio = <20800>;
+			offset_max = <250>;
+			offset_range_min = <255>;
+			offset_range_max = <255>;
+			force_cali_limit = <2000>;
+			cali_jitter_limit = <30>;
+			cal_offset_margin = <120>;
+		};
+		light_1: light_1 {
+			status = "okay";
+			sensor_name = <9>;//TCS3720
+			i2c_num = <5>;
+			i2c_addr = <0x39>;
+			direction = <0>;
+			eint_num = <18>;
+			use_lb_algo = <1>;
+			lb_bri_max = <4095>;
+			als_ratio = <110>;
+			cct_type = <0x02>; //0x01 CCT_NORMAL 0x02 CCT_WISE
+			device_name = "tcs3720";
+			gold_cct_3k = <6441 3223 1592 10121 1001 1001>;
+			gold_cct_6k = <4350 3477 1951 8865 1001 1001>;
+		};
+		/*
+		enum {
+			STK37600,
+			MN29005,
+			TCS3408,
+		};
+		*/
+		rear_cct_1: rear_cct_1 {
+			status = "okay";
+			sensor_name = <0>;//STK37600
+			i2c_num = <0>;
+			i2c_addr = <0x48>;
+			direction = <0>;
+			eint_num = <21>;
+			available_sensor = <15>; // bit 0: rear als, bit 1: rear cct, bit 2: rear flicker, bit 3: rear proximity
+			gold_rear_cct_3k = <56056 87497 8704 1964 64 225020>; // 3000k gold parameter R, G, B, C, W, F
+			gold_rear_cct_6k = <41341 80355 19964 1483 64 233984>;  // 6000k gold parameter R, G, B, C, W, F
+			device_name = "stk3b6x";
+			cct_coef_Hir = <4147000 0 6610000 0 839000 0 608000 1
+							3905000 0 6195000 0 5775000 0 1201000 1
+							1226000 1 1105000 0 38649000 0 961000 1>;
+			cct_coef_Lir = <21034000 0 4271000 1 20349000 0 17142000 0
+							15438000 0 1575000 1 21997000 0 5000 0
+							3706000 0 2727000 1 52034000 0 2988000 1>;
+		};
+		/*
+		enum {
+			SX933x
+		};
+		*/
+		sar_1: sar_1 {
+			status = "okay";
+			sensor_name = <0>;//SX933x
+			i2c_num = <6>;
+			i2c_addr = <0x28>;
+			direction = <4>;
+			eint_num = <11>;
+			channel_num = <2>;
+			channel_0_min = <0>;
+			channel_0_max = <70000>;
+			channel_1_min = <0>;
+			channel_1_max = <70000>;
+			channel_2_min = <0>;
+			channel_2_max = <70000>;
+			channel_3_min = <0>;
+			channel_3_max = <70000>;
+			reg_table_num = <3>;
+			use_far_near = <1>;
+		};
+		/*
+		enum {
+			MXM1120,
+		};
+		*/
+		hall_1: hall_1 {
+			status = "okay";
+			sensor_name = <0>;//MXM1120
+			i2c_num = <0>;
+			i2c_addr = <0x0C>;
+			direction = <0>;
+			eint_num = <4>;
+			device_name = "mxm1120";
+		};
+
+		pick_up: pick_up {
+			status = "okay";
+			use-proximity = <1>;
+		};
+		lux_aod: lux_aod {
+			status = "okay";
+			use-proximity = <1>;
+		};
+		alsps_arch: alsps_arch {
+			status = "okay";
+			new-arch-supported = <1>;
+		};
+		cali_arch: cali_arch {
+			status = "okay";
+			new-arch-supported = <1>;
+		};
+	};
+/* sensor end */
+};
